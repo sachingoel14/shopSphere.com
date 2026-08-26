@@ -1,0 +1,45 @@
+3. First milestone
+
+Before touching Redux or APIs, let's make the UI shell:
+
+                 SHOPSPHERE
+┌───────────────────────────────────────────────┐
+│ 🛍 Logo    Search products...    🛒  👤       │
+├──────────────┬────────────────────────────────┤
+│              │                                │
+│ Dashboard    │                                │
+│ Store        │          PAGE CONTENT          │
+│ Orders       │                                │
+│ Wishlist     │                                │
+│ Profile      │                                │
+│ Contact      │                                │
+│ About        │                                │
+│              │                                │
+│ Logout       │                                │
+└──────────────┴────────────────────────────────┘
+
+UI Shell
+   ↓
+Routing
+   ↓
+Login UI
+   ↓
+Authentication + JWT
+   ↓
+Protected Dashboard
+   ↓
+Store UI
+   ↓
+Products API
+   ↓
+Search + Categories
+   ↓
+Product Details
+   ↓
+Cart Redux
+   ↓
+Wishlist Redux
+   ↓
+Orders
+   ↓
+Admin
