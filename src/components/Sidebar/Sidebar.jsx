@@ -1,44 +1,73 @@
+import { NavLink } from "react-router-dom";
+
 function Sidebar() {
+  const links = [
+    {
+      name: "Dashboard",
+      path: "/",
+      icon: "🏠",
+    },
+    {
+      name: "Store",
+      path: "/store",
+      icon: "🛍️",
+    },
+    {
+      name: "Orders",
+      path: "/orders",
+      icon: "📦",
+    },
+    {
+      name: "Wishlist",
+      path: "/wishlist",
+      icon: "❤️",
+    },
+    {
+      name: "Profile",
+      path: "/profile",
+      icon: "👤",
+    },
+    {
+      name: "Contact",
+      path: "/contact",
+      icon: "📞",
+    },
+    {
+      name: "About",
+      path: "/about",
+      icon: "ℹ️",
+    },
+  ];
+
   return (
-    <aside className="hidden md:flex w-60 min-h-[calc(100vh-4rem)] border-r bg-white p-4 flex-col">
+    <aside className="hidden md:flex w-60 min-h-[calc(100vh-4rem)] border-r bg-white p-4">
 
-      <div className="space-y-2">
+      <div className="flex w-full flex-col">
 
-        <button className="w-full rounded-lg bg-indigo-50 px-4 py-3 text-left font-medium text-indigo-600">
-          🏠 Dashboard
-        </button>
+        <div className="space-y-2">
 
-        <button className="w-full rounded-lg px-4 py-3 text-left font-medium text-gray-600 hover:bg-gray-100">
-          🛍️ Store
-        </button>
+          {links.map((link) => (
+            <NavLink
+              key={link.path}
+              to={link.path}
+              className={({ isActive }) =>
+                `block rounded-lg px-4 py-3 font-medium transition ${
+                  isActive
+                    ? "bg-indigo-50 text-indigo-600"
+                    : "text-gray-600 hover:bg-gray-100"
+                }`
+              }
+            >
+              {link.icon} {link.name}
+            </NavLink>
+          ))}
 
-        <button className="w-full rounded-lg px-4 py-3 text-left font-medium text-gray-600 hover:bg-gray-100">
-          📦 Orders
-        </button>
+        </div>
 
-        <button className="w-full rounded-lg px-4 py-3 text-left font-medium text-gray-600 hover:bg-gray-100">
-          ❤️ Wishlist
-        </button>
-
-        <button className="w-full rounded-lg px-4 py-3 text-left font-medium text-gray-600 hover:bg-gray-100">
-          👤 Profile
-        </button>
-
-        <button className="w-full rounded-lg px-4 py-3 text-left font-medium text-gray-600 hover:bg-gray-100">
-          📞 Contact
-        </button>
-
-        <button className="w-full rounded-lg px-4 py-3 text-left font-medium text-gray-600 hover:bg-gray-100">
-          ℹ️ About
-        </button>
-
-      </div>
-
-      {/* Logout */}
-      <div className="mt-auto">
-        <button className="w-full rounded-lg px-4 py-3 text-left font-medium text-red-500 hover:bg-red-50">
+        <button className="mt-auto w-full rounded-lg px-4 py-3 text-left font-medium text-red-500 hover:bg-red-50">
           🚪 Logout
         </button>
+
       </div>
 
     </aside>
