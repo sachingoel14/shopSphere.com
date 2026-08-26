@@ -1,0 +1,362 @@
+Main navigation
+
+┌──────────────────────────────────────────────────────────────┐
+│  🛍 ShopSphere       🔍 Search products...       🛒 3  👤 Sachin │
+├──────────────────────────────────────────────────────────────┤
+│                                                              │
+│  Dashboard   Store   Orders   Wishlist   Profile   Contact   │
+│                                                              │
+└──────────────────────────────────────────────────────────────┘
+
+
+1. Login Page
+
+Clean, modern login screen:
+
+        ┌─────────────────────────────┐
+        │         🛍 ShopSphere       │
+        │                             │
+        │       Welcome Back!         │
+        │                             │
+        │  Email / Username           │
+        │  ┌───────────────────────┐  │
+        │  │ emilys                │  │
+        │  └───────────────────────┘  │
+        │                             │
+        │  Password                   │
+        │  ┌───────────────────────┐  │
+        │  │ •••••••••             │  │
+        │  └───────────────────────┘  │
+        │                             │
+        │       [     Login     ]     │
+        │                             │
+        │      Forgot Password?       │
+        └─────────────────────────────┘
+
+2. Dashboard
+
+After login:
+
+┌──────────────────────────────────────────────────────────────┐
+│ 🛍 ShopSphere                 🔍 Search       🛒 3    Sachin │
+├──────────────┬───────────────────────────────────────────────┤
+│              │                                               │
+│ Dashboard    │  Welcome back, Sachin 👋                      │
+│              │                                               │
+│ Store        │  ┌──────────┐ ┌──────────┐ ┌──────────┐       │
+│ Orders       │  │ Orders   │ │ Wishlist │ │ Cart     │       │
+│ Wishlist     │  │    12    │ │     8    │ │     3    │       │
+│ Profile      │  └──────────┘ └──────────┘ └──────────┘       │
+│              │                                               │
+│ Contact      │  Recent Orders                                │
+│ About        │  ┌─────────────────────────────────────────┐  │
+│              │  │ #ORD1234   Shoes       $120    Delivered │  │
+│ Logout       │  │ #ORD1235   T-Shirt      $40    Shipped   │  │
+│              │  └─────────────────────────────────────────┘  │
+└──────────────┴───────────────────────────────────────────────┘
+
+3. Store Page ⭐
+
+Top:
+
+┌─────────────────────────────────────────────────────────────┐
+│                       OUR STORE                              │
+│                                                             │
+│  🔍 Search products...                           🛒 Cart (3) │
+└─────────────────────────────────────────────────────────────┘
+
+Then categories:
+
+┌─────────┬─────────┬─────────┬─────────┬─────────┬──────────┐
+│ 👕      │ 🍔      │ 👟      │ 💻      │ 🏠      │ 🎮       │
+│ Clothes │ Food    │ Shoes   │ Electro │ Home    │ Gaming   │
+└─────────┴─────────┴─────────┴─────────┴─────────┴──────────┘
+
+
+Click Clothes:
+
+Clothes
+────────────────────────────────────────────
+
+┌────────────┐ ┌────────────┐ ┌────────────┐
+│   IMAGE    │ │   IMAGE    │ │   IMAGE    │
+│            │ │            │ │            │
+│ T-Shirt    │ │ Hoodie     │ │ Jeans      │
+│ ⭐ 4.5      │ │ ⭐ 4.7      │ │ ⭐ 4.3      │
+│ ₹799       │ │ ₹1,499     │ │ ₹1,999     │
+│            │ │            │ │            │
+│ [Add Cart] │ │ [Add Cart] │ │ [Add Cart] │
+└────────────┘ └────────────┘ └────────────┘
+
+Your architecture becomes:
+
+Store
+ │
+ ├── Search
+ ├── Categories
+ ├── Product Grid
+ │      └── ProductCard
+ │
+ └── Product Details
+
+
+
+ 5. Product Details
+
+Clicking a product opens:
+
+┌─────────────────────────────────────────────────────────────┐
+│                                                             │
+│  ┌──────────────────┐       iPhone 15                       │
+│  │                  │       ⭐ 4.8                          │
+│  │      PRODUCT     │                                       │
+│  │       IMAGE      │       ₹69,999                         │
+│  │                  │                                       │
+│  └──────────────────┘       In Stock ✅                     │
+│                                                             │
+│                             Quantity:  −  1  +              │
+│                                                             │
+│                             [ Add to Cart ]                  │
+│                             [ ♡ Wishlist ]                  │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+
+
+6. Cart 🛒
+
+Redux Toolkit is perfect for this.
+
+MY CART
+────────────────────────────────────────────
+
+┌──────────────────────────────────────────┐
+│ 👕 T-Shirt              ₹799             │
+│     −  2  +             ₹1,598          │
+├──────────────────────────────────────────┤
+│ 👟 Running Shoes        ₹2,499           │
+│     −  1  +             ₹2,499          │
+└──────────────────────────────────────────┘
+
+                         Subtotal: ₹4,097
+                         Delivery: ₹100
+                         ───────────────
+                         Total: ₹4,197
+
+                         [ Checkout ]
+
+
+7. Wishlist ❤️
+
+Another Redux feature.
+
+MY WISHLIST
+
+┌────────────┐ ┌────────────┐ ┌────────────┐
+│   IMAGE    │ │   IMAGE    │ │   IMAGE    │
+│            │ │            │ │            │
+│ T-Shirt    │ │ Watch      │ │ Shoes      │
+│ ₹799       │ │ ₹3,999     │ │ ₹2,499     │
+│            │ │            │ │            │
+│ [Add Cart] │ │ [Add Cart] │ │ [Add Cart] │
+└────────────┘ └────────────┘ └────────────┘
+
+
+8. Profile
+
+Since you already know authentication:
+
+MY PROFILE
+
+        ┌──────────────┐
+        │              │
+        │    Avatar    │
+        │              │
+        └──────────────┘
+
+        Sachin Goyal
+
+        Email
+        sachin@example.com
+
+        Phone
+        +91 XXXXX XXXXX
+
+        Address
+        Delhi, India
+
+        [ Edit Profile ]
+
+
+9. Orders
+MY ORDERS
+
+┌────────────────────────────────────────────────────┐
+│ Order #ORD1001                                     │
+│ 2 Products                          ₹3,499         │
+│                                                   │
+│ ● Ordered ─── ● Shipped ─── ● Delivered          │
+│                                                   │
+│                    [ View Details ]               │
+└────────────────────────────────────────────────────┘
+
+
+
+10. Contact
+
+Simple but professional:
+
+        CONTACT US
+
+  Have a question? We're here to help.
+
+  Name
+  ┌────────────────────────────┐
+  │ Sachin                     │
+  └────────────────────────────┘
+
+  Email
+  ┌────────────────────────────┐
+  │ sachin@email.com            │
+  └────────────────────────────┘
+
+  Message
+  ┌────────────────────────────┐
+  │                            │
+  │                            │
+  └────────────────────────────┘
+
+             [ Send Message ]
+
+
+
+11. About
+              ABOUT SHOPSPHERE
+
+     Shopping made simple.
+
+  ShopSphere is a modern e-commerce platform
+  designed to provide a simple and seamless
+  shopping experience.
+
+       10K+ Products
+       5K+ Customers
+       20+ Categories
+
+
+
+12. Admin Dashboard 🚀
+
+This is the feature I'd recommend adding after you finish the customer side.
+
+Admin sees:
+
+ADMIN DASHBOARD
+
+┌────────────┐ ┌────────────┐ ┌────────────┐
+│ Revenue    │ │ Orders     │ │ Customers  │
+│ ₹2.4L      │ │ 1,245      │ │ 8,420      │
+└────────────┘ └────────────┘ └────────────┘
+
+
+Products
+────────────────────────────────────────
+
+[ + Add Product ]
+
+Product       Category      Stock     Price
+────────────────────────────────────────
+T-Shirt       Clothes       120       ₹799
+Burger        Food           50       ₹299
+iPhone        Electronics    20       ₹69,999
+
+Now you introduce role-based authentication:             
+
+
+src/
+│
+├── app/
+│   └── store.js
+│
+├── components/
+│   ├── Navbar/
+│   ├── Sidebar/
+│   ├── ProductCard/
+│   ├── CategoryCard/
+│   └── ProtectedRoute/
+│
+├── pages/
+│   ├── Login/
+│   ├── Dashboard/
+│   ├── Store/
+│   ├── ProductDetails/
+│   ├── Cart/
+│   ├── Wishlist/
+│   ├── Orders/
+│   ├── Profile/
+│   ├── Contact/
+│   └── About/
+│
+├── features/
+│   ├── auth/
+│   │   └── authSlice.js
+│   │
+│   ├── cart/
+│   │   └── cartSlice.js
+│   │
+│   ├── wishlist/
+│   │   └── wishlistSlice.js
+│   │
+│   └── api/
+│       ├── authApi.js
+│       ├── productApi.js
+│       └── orderApi.js
+│
+├── hooks/
+│   ├── useAuth.js
+│   └── useDebounce.js
+│
+└── App.jsx
+
+
+
+                    🛍 SHOPSPHERE
+                         │
+             ┌───────────┴───────────┐
+             │                       │
+          Login                    User
+             │                       │
+           JWT                  Dashboard
+             │                       │
+      Protected Route        ┌──────┼──────┐
+                             │      │      │
+                           Store  Profile Orders
+                             │
+                      ┌──────┼──────┐
+                      │      │      │
+                   Search Categories Products
+                             │
+                         Product
+                             │
+                          Cart
+                             │
+                         Checkout
+                             │
+                           Order
+
+
+
+
+🔥 I recommend this development order
+
+Phase 1: Project structure + Navbar + React Router
+Phase 2: Login + JWT + Protected Routes
+Phase 3: Store + categories + product cards
+Phase 4: Product details + search
+Phase 5: Cart with Redux Toolkit
+Phase 6: Wishlist
+Phase 7: Profile + Orders
+Phase 8: Checkout
+Phase 9: Admin dashboard + role-based auth
+Phase 10: Polish, responsive UI, loading/error states, deployment
+
+And one important thing: don't use a fake API forever. It's excellent for learning RTK Query, but after the frontend works, connect it to your own Node/Express + MongoDB backend. That will turn this from a React practice project into a proper full-stack portfolio project.                           
