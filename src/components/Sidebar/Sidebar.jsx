@@ -1,6 +1,13 @@
 import { NavLink } from "react-router-dom";
 
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { logout } from "../../features/auth/authSlice";
+
+
 function Sidebar() {
+
   const links = [
     {
       name: "Dashboard",
@@ -39,6 +46,20 @@ function Sidebar() {
     },
   ];
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.auth.user);
+
+  const handleLogout = () => {
+    console.log("Before Logout:", user);
+
+    dispatch(logout());
+
+    console.log("Redux Cleared");
+
+    navigate("/login");
+  }
+
   return (
     <aside className="hidden md:flex w-60 min-h-[calc(100vh-4rem)] border-r bg-white p-4">
 
@@ -64,7 +85,7 @@ function Sidebar() {
 
         </div>
 
-        <button className="mt-auto w-full rounded-lg px-4 py-3 text-left font-medium text-red-500 hover:bg-red-50">
+        <button onClick={handleLogout} className="mt-auto w-full rounded-lg px-4 py-3 text-left font-medium text-red-500 hover:bg-red-50">
           🚪 Logout
         </button>
 

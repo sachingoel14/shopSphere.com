@@ -1,4 +1,31 @@
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { logout } from "../../features/auth/authSlice";
+
+
+
+
+
+
 function Navbar() {
+
+  const [open, setOpen] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.auth.user);
+
+  const handleLogout = () => {
+    console.log("Before Logout:", user);
+
+    dispatch(logout());
+
+    console.log("Redux Cleared");
+
+    navigate("/login");
+  };
+
+
   return (
     <nav className="h-16 border-b bg-white px-6 flex items-center justify-between">
       
@@ -28,15 +55,50 @@ function Navbar() {
         </button>
 
         {/* User */}
-        <div className="flex items-center gap-2">
-          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-indigo-100 font-semibold text-indigo-600">
-            S
+      <div className="relative">
+        <button
+          onClick={() => setOpen(!open)}
+          className="flex items-center gap-2 rounded-lg p-2 hover:bg-gray-100 transition"
+        >
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-100 font-bold text-indigo-600">
+            {user?.firstName?.[0] || "U"}
           </div>
 
           <span className="hidden sm:block font-medium">
-            Sachin
+            {user?.firstName || "User"}
           </span>
-        </div>
+
+          <span>▼</span>
+        </button>
+
+        {open && (
+          <div className="absolute right-0 mt-2 w-52 rounded-xl border bg-white p-2 shadow-xl">
+
+            <button className="w-full rounded-lg px-3 py-2 text-left hover:bg-gray-100">
+              👤 My Profile
+            </button>
+
+            <button className="w-full rounded-lg px-3 py-2 text-left hover:bg-gray-100">
+              📦 Orders
+            </button>
+
+            <button className="w-full rounded-lg px-3 py-2 text-left hover:bg-gray-100">
+              ❤️ Wishlist
+            </button>
+
+            <hr className="my-2"/>
+
+            <button
+              onClick={handleLogout}
+              className="w-full rounded-lg px-3 py-2 text-left text-red-500 hover:bg-red-50"
+            >
+              🚪 Logout
+            </button>
+
+          </div>
+        )}
+
+      </div>
 
       </div>
     </nav>
