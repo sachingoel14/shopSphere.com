@@ -43,3 +43,22 @@ Wishlist Redux
 Orders
    ↓
 Admin
+
+
+
+2. profile drop down
+
+                 ShopSphere
+
+            🔍 Search      🛒
+
+               👤 Emily ▼
+                   │
+                   ▼
+          ┌─────────────────┐
+          │ My Profile      │
+          │ Orders          │
+          │ Wishlist        │
+          │──────────────── │
+          │ 🚪 Logout       │
+          └─────────────────┘

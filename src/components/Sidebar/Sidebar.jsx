@@ -4,7 +4,7 @@ function Sidebar() {
   const links = [
     {
       name: "Dashboard",
-      path: "/",
+      path: "/dashboard",
       icon: "🏠",
     },
     {

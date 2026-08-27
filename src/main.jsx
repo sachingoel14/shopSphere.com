@@ -13,32 +13,94 @@ import Profile from "./pages/Profile/Profile";
 import Contact from "./pages/Contact/Contact";
 import About from "./pages/About/About";
 
+import { Provider } from "react-redux";
+import { store } from "./app/store";
+
+import Login from "./pages/Login/Login";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute.jsx";
+
+
 import "./index.css";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="" element={<Layout />}>
+    <>
+      {/* Public Route */}
+      <Route path="/" element={<Login />} /> // this is for login
 
-      <Route path="/" element={<Dashboard />} />
+      {/* Protected Routes */}
+      <Route element={<Layout />}>
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
 
-      <Route path="store" element={<Store />} />
+        <Route
+          path="/store"
+          element={
+            <ProtectedRoute>
+              <Store />
+            </ProtectedRoute>
+          }
+        />
 
-      <Route path="orders" element={<Orders />} />
+        <Route
+          path="/orders"
+          element={
+            <ProtectedRoute>
+              <Orders />
+            </ProtectedRoute>
+          }
+        />
 
-      <Route path="wishlist" element={<Wishlist />} />
+        <Route
+          path="/wishlist"
+          element={
+            <ProtectedRoute>
+              <Wishlist />
+            </ProtectedRoute>
+          }
+        />
 
-      <Route path="profile" element={<Profile />} />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
 
-      <Route path="contact" element={<Contact />} />
+        <Route
+          path="/contact"
+          element={
+            <ProtectedRoute>
+              <Contact />
+            </ProtectedRoute>
+          }
+        />
 
-      <Route path="about" element={<About />} />
-
-    </Route>
+        <Route
+          path="/about"
+          element={
+            <ProtectedRoute>
+              <About />
+            </ProtectedRoute>
+          }
+        />
+      </Route>
+    </>
   )
 );
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </StrictMode>
 );
