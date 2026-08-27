@@ -1,0 +1,45 @@
+we build store
+
+We'll build these in order:
+
+Fetch products (RTK Query)
+Beautiful product cards
+Search bar
+Category chips
+Category filtering
+Product Details page
+Add to Cart
+Wishlist
+Loading skeletons
+
+Today we'll complete the first three.
+
+
+                debouncedSearch
+                       │
+              ┌────────┴────────┐
+              │                 │
+             ""              "laptop"
+              │                 │
+              ↓                 ↓
+      getProducts()      searchProducts()
+              │                 │
+              ↓                 ↓
+        /products      /products/search?q=laptop
+
+
+
+
+                            Search?
+                       │
+             ┌─────────┴─────────┐
+            YES                  NO
+             │                    │
+             ↓                    ↓
+        Search API            Category?
+                              │
+                       ┌──────┴──────┐
+                      YES            NO
+                       │              │
+                       ↓              ↓
+                  Category API    All Products
