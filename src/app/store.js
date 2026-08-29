@@ -4,9 +4,12 @@ import authReducer from "../features/auth/authSlice.js";
 import { authApi } from "../features/api/authApi.js";
 import { productApi } from "../features/api/productApi";
 
+import cartReducer from "../features/cart/cartSlice";
+
 export const store = configureStore({
   reducer: {
     auth: authReducer,
+    cart: cartReducer,
     [authApi.reducerPath]: authApi.reducer,
     [productApi.reducerPath]: productApi.reducer,
   },

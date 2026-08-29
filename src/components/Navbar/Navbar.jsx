@@ -3,17 +3,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../features/auth/authSlice";
 
-
-
-
-
-
 function Navbar() {
 
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.auth.user);
+
+  const cartItems = useSelector(
+  (state) => state.cart.cartItems
+  );
+
+  const totalItems = cartItems.reduce(
+  (total, item) => total + item.quantity,
+  0
+  );
 
   const handleLogout = () => {
     console.log("Before Logout:", user);
@@ -45,14 +49,15 @@ function Navbar() {
 
       {/* Right side */}
       <div className="flex items-center gap-5">
-
         {/* Cart */}
-        <button className="relative text-xl">
+        <div className="relative" onClick={() => navigate("/cart")}>
           🛒
-          <span className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-indigo-600 text-xs text-white">
-            3
-          </span>
-        </button>
+          {totalItems > 0 && (
+            <span className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs text-white">
+              {totalItems}
+            </span>
+          )}
+      </div>
 
         {/* User */}
       <div className="relative">

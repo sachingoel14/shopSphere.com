@@ -18,7 +18,8 @@ import { store } from "./app/store";
 
 import Login from "./pages/Login/Login";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute.jsx";
-
+import ProductDetails from "./pages/ProductDetails/ProductDetails.jsx";
+import Cart from "./pages/Cart/Cart.jsx";
 
 import "./index.css";
 
@@ -89,6 +90,16 @@ const router = createBrowserRouter(
           element={
             <ProtectedRoute>
               <About />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route path="/product/:id" element={<ProductDetails />} />
+       <Route
+          path="/cart"
+          element={
+            <ProtectedRoute>
+              <Cart />
             </ProtectedRoute>
           }
         />

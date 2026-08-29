@@ -1,5 +1,8 @@
 
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../features/cart/cartSlice";
 
 import {
   useGetProductsQuery,
@@ -16,6 +19,8 @@ function Store() {
   const [search, setSearch] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [category, setCategory] = useState("");
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   // =========================
   // DEBOUNCE SEARCH
@@ -268,6 +273,7 @@ function Store() {
         {products?.map((product) => (
           <div
             key={product.id}
+            onClick={() => navigate(`/product/${product.id}`)}
             className="w-44 rounded-xl bg-white p-3 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
           >
             {/* Discount */}
@@ -314,9 +320,16 @@ function Store() {
                 Out of Stock
               </button>
             ) : (
-              <button className="mt-3 w-full rounded-lg bg-indigo-600 py-2 text-xs text-white hover:bg-indigo-700">
-                Add to Cart
-              </button>
+              <button
+              onClick={(e) => {
+                e.stopPropagation();
+                dispatch(addToCart(product));
+                console.log("Added:", product.title);
+              }}
+              className="mt-3 w-full rounded-lg bg-indigo-600 py-2 text-sm text-white hover:bg-indigo-700"
+            >
+              Add to Cart
+            </button>
             )}
           </div>
         ))}
