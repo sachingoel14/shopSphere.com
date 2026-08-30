@@ -20,8 +20,12 @@ import Login from "./pages/Login/Login";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute.jsx";
 import ProductDetails from "./pages/ProductDetails/ProductDetails.jsx";
 import Cart from "./pages/Cart/Cart.jsx";
-
 import "./index.css";
+
+
+import Checkout from "./pages/Checkout/Checkout.jsx";
+import OrderSuccess from "./pages/OrderSuccess/OrderSuccess.jsx";
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -94,7 +98,7 @@ const router = createBrowserRouter(
           }
         />
 
-        <Route path="/product/:id" element={<ProductDetails />} />
+      <Route path="/product/:id" element={<ProductDetails />} />
        <Route
           path="/cart"
           element={
@@ -104,6 +108,24 @@ const router = createBrowserRouter(
           }
         />
       </Route>
+
+      <Route
+        path="/checkout"
+        element={
+          <ProtectedRoute>
+            <Checkout />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/order-success"
+        element={
+          <ProtectedRoute>
+            <OrderSuccess />
+          </ProtectedRoute>
+        }
+      />
     </>
   )
 );
