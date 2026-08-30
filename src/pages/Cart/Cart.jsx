@@ -1,9 +1,30 @@
-import { useSelector } from "react-redux";
+
+import { useDispatch, useSelector } from "react-redux";
+import {
+  increaseQuantity,
+  decreaseQuantity,
+  removeFromCart,
+  clearCart,
+} from "../../features/cart/cartSlice";
+
+import { useNavigate } from "react-router-dom";
 
 function Cart() {
+
+  const dispatch = useDispatch();
   const cartItems = useSelector(
     (state) => state.cart.cartItems
   );
+  const navigate = useNavigate();
+  const subtotal = cartItems.reduce(
+    (total, item) =>
+      total + item.price * item.quantity,
+    0
+  );
+
+  const shipping = subtotal > 500 ? 50 : 0;
+
+  const total = subtotal + shipping;
 
   return (
     <div>
@@ -45,22 +66,88 @@ function Cart() {
               </div>
 
               <div className="text-right">
+                <div className="flex items-center gap-3">
+                  <button
+                    onClick={() => dispatch(decreaseQuantity(item.id))}
+                    className="rounded border px-3 py-1 hover:bg-gray-100"
+                  >
+                    -
+                  </button>
 
-                <p>Qty: {item.quantity}</p>
+                  <span className="font-semibold">
+                    {item.quantity}
+                  </span>
+
+                  <button
+                    onClick={() => dispatch(increaseQuantity(item.id))}
+                    className="rounded border px-3 py-1 hover:bg-gray-100"
+                  >
+                    +
+                  </button>
+                </div>
 
                 <p className="font-bold">
-                  ${item.price * item.quantity}
+                  ${(item.price * item.quantity)}
                 </p>
 
-              </div>
+                 <button
+                    onClick={() => dispatch(removeFromCart(item.id))}
+                    className="mt-2 text-sm text-red-500 hover:underline"
+                  >
+                    Remove
+                  </button>
 
+              </div>
             </div>
 
           ))}
 
         </div>
       )}
+        <div className="mt-8 rounded-xl bg-white p-6 shadow-sm">
 
+        <h2 className="text-xl font-semibold">
+          Order Summary
+        </h2>
+
+        <div className="mt-4 space-y-3">
+
+          <div className="flex justify-between">
+            <span>Subtotal</span>
+            <span>${subtotal}</span>
+          </div>
+
+          <div className="flex justify-between">
+            <span>Shipping</span>
+            <span>
+              {shipping === 0 ? "Free" : `${shipping}`}
+            </span>
+          </div>
+
+          <hr />
+
+          <div className="flex justify-between text-lg font-bold">
+            <span>Total</span>
+            <span>${total}</span>
+          </div>
+
+        </div>
+
+        <button
+          onClick={() => navigate("/checkout")}
+          className="mt-6 w-full rounded-xl bg-indigo-600 py-3 text-white hover:bg-indigo-700"
+        >
+          Proceed to Checkout
+        </button>
+
+        <button
+          onClick={() => dispatch(clearCart())}
+          className="mt-3 w-full rounded-xl border py-3 hover:bg-gray-100"
+        >
+          Clear Cart
+        </button>
+
+      </div>
     </div>
   );
 }

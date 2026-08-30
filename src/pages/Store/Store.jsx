@@ -1,8 +1,9 @@
 
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import { addToCart } from "../../features/cart/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleWishlist } from "../../features/wishlist/wishlistSlice";
 
 import {
   useGetProductsQuery,
@@ -21,6 +22,10 @@ function Store() {
   const [category, setCategory] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const wishlistItems = useSelector(
+  (state) => state.wishlist.wishlistItems
+  );
 
   // =========================
   // DEBOUNCE SEARCH
@@ -270,69 +275,86 @@ function Store() {
         </div>
       ) : (
       <div className="flex flex-wrap gap-4 justify-start">
-        {products?.map((product) => (
-          <div
-            key={product.id}
-            onClick={() => navigate(`/product/${product.id}`)}
-            className="w-44 rounded-xl bg-white p-3 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
-          >
-            {/* Discount */}
-            {product.discountPercentage > 0 && (
-              <span className="inline-block rounded-full bg-green-100 px-2 py-1 text-[10px] font-medium text-green-700">
-                {product.discountPercentage.toFixed(1)}% OFF
-              </span>
-            )}
+        {products?.map((product) => {
+          const isWishlisted = wishlistItems.some(
+            (item) => item.id === product.id
+          );
 
-            {/* Image */}
-            <img
-              src={product.thumbnail}
-              alt={product.title}
-              className="mt-2 h-32 w-full rounded-lg object-cover"
-            />
-
-            {/* Title */}
-            <h3 className="mt-3 line-clamp-2 text-sm font-semibold">
-              {product.title}
-            </h3>
-
-            {/* Brand */}
-            <p className="mt-1 text-xs text-gray-500 truncate">
-              {product.brand}
-            </p>
-
-            {/* Price + Rating */}
-            <div className="mt-2 flex items-center justify-between">
-              <span className="text-base font-bold text-indigo-600">
-                ${product.price}
-              </span>
-
-              <span className="rounded-full bg-yellow-100 px-2 py-1 text-[10px]">
-                ⭐ {product.rating}
-              </span>
-            </div>
-
-            {/* Button */}
-            {product.stock === 0 ? (
-              <button
-                disabled
-                className="mt-3 w-full rounded-lg bg-gray-300 py-2 text-xs text-gray-500"
-              >
-                Out of Stock
-              </button>
-            ) : (
-              <button
-              onClick={(e) => {
-                e.stopPropagation();
-                dispatch(addToCart(product));
-                console.log("Added:", product.title);
-              }}
-              className="mt-3 w-full rounded-lg bg-indigo-600 py-2 text-sm text-white hover:bg-indigo-700"
+          return (
+            <div
+              key={product.id}
+              onClick={() => navigate(`/product/${product.id}`)}
+              className="w-44 cursor-pointer rounded-xl bg-white p-3 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
             >
-              Add to Cart
-            </button>
-            )}
-          </div>
-        ))}
+              {/* Discount */}
+              {product.discountPercentage > 0 && (
+                <span className="inline-block rounded-full bg-green-100 px-2 py-1 text-[10px] font-medium text-green-700">
+                  {product.discountPercentage.toFixed(1)}% OFF
+                </span>
+              )}
+
+              {/* Image + Wishlist */}
+              <div className="relative mt-2">
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    dispatch(toggleWishlist(product));
+                  }}
+                  className="absolute right-2 top-2 z-10 rounded-full bg-white p-2 shadow hover:bg-gray-100"
+                >
+                  {isWishlisted ? "❤️" : "🤍"}
+                </button>
+
+                <img
+                  src={product.thumbnail}
+                  alt={product.title}
+                  className="h-32 w-full rounded-lg object-cover"
+                />
+              </div>
+
+              {/* Title */}
+              <h3 className="mt-3 line-clamp-2 text-sm font-semibold">
+                {product.title}
+              </h3>
+
+              {/* Brand */}
+              <p className="mt-1 truncate text-xs text-gray-500">
+                {product.brand}
+              </p>
+
+              {/* Price + Rating */}
+              <div className="mt-2 flex items-center justify-between">
+                <span className="text-base font-bold text-indigo-600">
+                  ${product.price}
+                </span>
+
+                <span className="rounded-full bg-yellow-100 px-2 py-1 text-[10px]">
+                  ⭐ {product.rating}
+                </span>
+              </div>
+
+              {/* Add to Cart */}
+              {product.stock === 0 ? (
+                <button
+                  disabled
+                  className="mt-3 w-full rounded-lg bg-gray-300 py-2 text-xs text-gray-500"
+                >
+                  Out of Stock
+                </button>
+              ) : (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    dispatch(addToCart(product));
+                  }}
+                  className="mt-3 w-full rounded-lg bg-indigo-600 py-2 text-xs text-white hover:bg-indigo-700"
+                >
+                  Add to Cart
+                </button>
+              )}
+            </div>
+          );
+        })}
       </div>
       )}
 

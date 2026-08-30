@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { logout } from "../../features/auth/authSlice";
 
 function Navbar() {
-
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
