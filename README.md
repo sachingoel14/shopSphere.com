@@ -8,10 +8,31 @@ A modern e-commerce web application built with **React, Vite, Redux Toolkit, RTK
 
 ## 📸 Preview
 
-> Add screenshots of your Home, Store, Login, and Dashboard pages here.
+<h3>Login</h3>
+<img src="./src/screenshorts/login.png" width="700">
+
+<h3>Dashboard</h3>
+<img src="./src/screenshorts/dashboard.png" width="700">
+
+<h3>Store</h3>
+<img src="./src/screenshorts/store.png" width="700">
+
+<h3>Cart</h3>
+<img src="./src/screenshorts/cart.png" width="700">
+
+<h3>WishList</h3>
+<img src="./src/screenshorts/wishlist.png" width="700">
+
+<h3>Order</h3>
+<img src="./src/screenshorts/orders.png" width="700">
+
+<h3>OrderPlaced</h3>
+<img src="./src/screenshorts/orderplaced.png" width="700">
+
+<h3>CheckOut</h3>
+<img src="./src/screenshorts/checkout.png" width="700">
 
 ---
-
 ## ✨ Features
 
 - 🔐 User Login Authentication
