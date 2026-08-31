@@ -31,7 +31,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       {/* Public Route */}
-      <Route path="/login" element={<Login />} /> // this is for login
+      <Route path="/" element={<Login />} /> // this is for login
 
       {/* Protected Routes */}
       <Route element={<Layout />}>

@@ -57,7 +57,7 @@ function Sidebar() {
 
     console.log("Redux Cleared");
 
-    navigate("/login");
+    navigate("/");
   }
 
   return (
