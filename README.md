@@ -1,16 +1,57 @@
-# React + Vite
+# 🛍️ ShopSphere
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A modern e-commerce web application built with **React, Vite, Redux Toolkit, RTK Query, and Tailwind CSS**. The project includes authentication, product browsing, search functionality, category filtering, protected routes, and a responsive UI.
 
-Currently, two official plugins are available:
+## 🚀 Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+🔗 https://shop-sphere-com-git-main-sachingoyal.vercel.app
 
-## React Compiler
+## 📸 Preview
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+> Add screenshots of your Home, Store, Login, and Dashboard pages here.
 
-## Expanding the Oxlint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## ✨ Features
+
+- 🔐 User Login Authentication
+- 🛒 Product Store with Categories
+- 🔍 Product Search
+- 📱 Fully Responsive Design
+- 🎨 Tailwind CSS UI
+- ⚡ Fast performance with Vite
+- 🔄 RTK Query API Integration
+- 🛡️ Protected Routes
+- 📩 Contact section with WhatsApp integration
+- ☁️ Deployed on Vercel
+
+---
+
+## 🛠️ Tech Stack
+
+| Technology | Purpose |
+|------------|---------|
+| React | Frontend |
+| Vite | Build Tool |
+| Redux Toolkit | State Management |
+| RTK Query | API Fetching |
+| React Router DOM | Routing |
+| Tailwind CSS | Styling |
+| JavaScript | Programming Language |
+| Vercel | Deployment |
+
+---
+
+## 📂 Project Structure
+
+```text
+src/
+├── assets/
+├── components/
+├── features/
+│   ├── api/
+│   └── auth/
+├── pages/
+├── routes/
+├── App.jsx
+└── main.jsx
